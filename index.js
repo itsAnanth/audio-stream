@@ -16,6 +16,11 @@ app.use(cors());
 
 app.get('/', (req, res) => res.send('Reached streaming server'));
 
+
+app.get('/count', async(_, res) => {
+    res.send(videoArray ? videoArray.length : 0);
+})
+
 app.get('/audio', async (req, res) => {
     if (!videoArray) return res.send('Video loader failed');
     const index = req.query.index;
