@@ -11,11 +11,19 @@ let videoArray;
 getVideos();
 
 
-
 app.use(cors());
 
 app.get('/', (req, res) => res.send('Reached streaming server'));
 
+app.get('/track', async(req, res) => {
+    const index = req.query.index;
+    const trackId = videoArray[index];
+    if (!trackId) return res.send(JSON.stringify({ success: false }));
+    const videoURL = `https://www.youtube.com/watch?v=${trackId}`;
+    const info = await ytdl.getInfo(videoURL);
+    const title = info.videoDetails.title;
+    res.send(JSON.stringify({ success: true, title: title, index: index }));
+})
 
 app.get('/count', async(_, res) => {
     res.send(videoArray ? videoArray.length.toString() : '0');
@@ -48,3 +56,5 @@ async function getVideos() {
     videoArray = result.items.map(x => x.snippet.resourceId.videoId);
     console.log('Loaded video metadata');
 };
+
+
