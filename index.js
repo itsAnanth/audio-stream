@@ -14,7 +14,7 @@ getVideos();
 
 app.use(cors());
 
-app.get('/', () => 'Reached streaming server');
+app.get('/', (req, res) => res.send('Reached streaming server'));
 
 app.get('/audio', async (req, res) => {
     if (!videoArray) return res.send('Video loader failed');
