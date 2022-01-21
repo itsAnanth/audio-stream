@@ -20,6 +20,7 @@ app.get('/reset', async(req, res) => {
     const key = req.query.key;
     if (!key || key != devKey) return res.send('Invalid dev key');
     await getVideos()
+    res.send('Updated video cache');
 })
 
 app.get('/track', async(req, res) => {
