@@ -6,7 +6,6 @@ import Server from './server.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const devKey = process.env.DEVKEY;
 const apiKey = process.env.KEY;
 
 getVideos(apiKey)
