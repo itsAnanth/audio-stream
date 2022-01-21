@@ -5,7 +5,7 @@ import ytdl from 'ytdl-core';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const devKey = process.env.devKey;
+const devKey = process.env.DEVKEY;
 const apiKey = process.env.KEY;
 
 let videoArray;
