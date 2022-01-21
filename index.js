@@ -14,12 +14,3 @@ getVideos(apiKey)
 app.use(cors());
 
 new Server(app, PORT, true);
-
-
-
-
-
-
-
-
-
