@@ -5,6 +5,7 @@ import ytdl from 'ytdl-core';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const devKey = process.env.devKey;
 const apiKey = process.env.KEY;
 
 let videoArray;
@@ -14,6 +15,12 @@ getVideos();
 app.use(cors());
 
 app.get('/', (req, res) => res.send('Reached streaming server'));
+
+app.get('/reset', async(req, res) => {
+    const key = req.query.key;
+    if (!key || key != devKey) return res.send('Invalid dev key');
+    await getVideos()
+})
 
 app.get('/track', async(req, res) => {
     const index = req.query.index;
