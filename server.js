@@ -1,5 +1,7 @@
 import fs from 'fs';
+import multer from 'multer';
 
+const upload = multer();
 const methodsPath = fs.readdirSync('./methods');
 
 class Server {
@@ -27,7 +29,8 @@ class Server {
         for (const [key, value] of Object.entries(this.methods)) {
             for (let route = 0; route < value.length; route++) {
                 const { path, callback } = value[route];
-                this.server[`${key.toLowerCase()}`].apply(this.server, [path, callback]);
+                const ckey = key.toLowerCase();
+                this.server[`${ckey}`].apply(this.server, ckey = 'post' ? [path, upload.none(), callback] : [path, callback]);
             }
         }
         return true;
