@@ -30,7 +30,7 @@ class Server {
             for (let route = 0; route < value.length; route++) {
                 const { path, callback } = value[route];
                 const ckey = key.toLowerCase();
-                this.server[`${ckey}`].apply(this.server, ckey = 'post' ? [path, upload.none(), callback] : [path, callback]);
+                this.server[`${ckey}`].apply(this.server, ckey == 'post' ? [path, upload.none(), callback] : [path, callback]);
             }
         }
         return true;
