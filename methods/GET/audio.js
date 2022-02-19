@@ -1,7 +1,7 @@
 import Cache from "../../modules/Cache.js";
 import ytdl from "ytdl-core";
 import Response from "../../modules/Response.js";
-
+import clean from 'content-disposition';
 export default {
     path: '/audio',
     callback: async (req, res) => {
@@ -17,7 +17,7 @@ export default {
         console.log(videoURL);
 
         const title = video.title
-        res.header('Content-Disposition', `attachment;\ filename="${title}.mp3"`);
+        res.header('Content-Disposition', clean(`attachment;\ filename="${title}.mp3"`));
         ytdl(videoURL, { filter: 'audioonly' }).pipe(res);
     }
 }
