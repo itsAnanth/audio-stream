@@ -17,7 +17,7 @@ export default {
         console.log(videoURL);
 
         const title = video.title
-        res.header('Content-Disposition', `attachment;\ filename="audio.mp3"`);
+        res.header('Content-Disposition', clean(`attachment;\ filename="${title}.mp3"`));
         ytdl(videoURL, { filter: 'audioonly' }).pipe(res);
     }
 }
